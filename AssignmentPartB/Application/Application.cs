@@ -17,7 +17,8 @@ namespace AssignmentPartB.Application
         StudentController studentController = new StudentController();
         AssignmentController assignmentController = new AssignmentController();
         public void Run()
-        {          
+        {
+            Console.WriteLine();      
             string input;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome To KremmySchool");
