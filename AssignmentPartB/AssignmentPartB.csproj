@@ -53,12 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Application Test.cs" />
     <Compile Include="Application\Application.cs" />
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
-    <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Controllers\MainControllerTest.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Entities\Assignment.cs" />
@@ -97,7 +94,6 @@
     <Compile Include="Views\ViewMenus\ViewDeleteMenu.cs" />
     <Compile Include="Views\ViewMenus\ViewInsideMenu.cs" />
     <Compile Include="Views\ViewMenus\ViewMainMenu.cs" />
-    <Compile Include="Views\ViewMenus\ViewMenu.cs" />
     <Compile Include="Views\ViewLists\ViewStudent.cs" />
     <Compile Include="Views\ViewLists\ViewStudentPerCourse.cs" />
     <Compile Include="Views\ViewLists\ViewStudentsWithMultipleCourse.cs" />

@@ -19,5 +19,4 @@ namespace AssignmentPartB.Views.ViewMenus
             Console.ResetColor();
         }
     }
-    
 }

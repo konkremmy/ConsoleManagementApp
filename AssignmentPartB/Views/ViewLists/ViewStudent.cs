@@ -10,8 +10,7 @@ using AssignmentPartB.Views;
 namespace AssignmentPartB.Views
 {
     public class ViewStudent
-    { 
-               
+    {             
         public void ViewStudents(IEnumerable<Student>  students)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -21,7 +20,6 @@ namespace AssignmentPartB.Views
             {
                 Console.WriteLine($"{stu.FirstName,-25}{stu.LastName,-25}{stu.DateOfBirth,-25}{stu.TuitionFees,-25}");
             }
-            
         }
         public void ViewStudentsId(IEnumerable<Student> students)
         {
@@ -33,7 +31,5 @@ namespace AssignmentPartB.Views
                 Console.WriteLine($"{stu.StudentId,-15}{stu.FirstName,-25}{stu.LastName,-25}{stu.DateOfBirth,-25}{stu.TuitionFees,-25}");
             }
         }
-        
-
     }
 }

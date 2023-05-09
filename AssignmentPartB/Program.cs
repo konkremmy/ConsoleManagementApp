@@ -19,7 +19,7 @@ namespace AssignmentPartB
     {
         static void Main(string[] args)
         {                               
-            Application_Test app = new Application_Test();
+            Application.Application app=new Application.Application();
             app.Run();
         }
     }

@@ -11,7 +11,6 @@ namespace AssignmentPartB.Views
 
     public class ViewAssignmentsPerCourse
     {
-       
         public void ViewAssignmentsPerCourses(IEnumerable<Course> courses)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

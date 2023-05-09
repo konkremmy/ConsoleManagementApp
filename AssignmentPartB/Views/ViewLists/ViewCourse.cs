@@ -11,8 +11,7 @@ using AssignmentPartB.Entities;
 namespace AssignmentPartB.Views
 {
     public class ViewCourse
-    {
-        
+    {    
         public void ViewCourses(IEnumerable<Course> courses)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

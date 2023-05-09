@@ -21,24 +21,20 @@ namespace AssignmentPartB.RepositoryServices
         {
             return db.Trainers.ToList();
         }
-
         public Trainer Get(int? id)
         {
             return db.Trainers.Find(id);
         }
-
         public void Add(Trainer trainer)
         {
             db.Entry(trainer).State = EntityState.Added;
             db.SaveChanges();
         }
-
         public void Edit(Trainer trainer)
         {
             db.Entry(trainer).State = EntityState.Modified;
             db.SaveChanges();
         }
-
         public void Delete(int id)
         {
             Trainer trainer = Get(id);
@@ -46,6 +42,5 @@ namespace AssignmentPartB.RepositoryServices
             db.SaveChanges();
         }
     }
-
 }
 

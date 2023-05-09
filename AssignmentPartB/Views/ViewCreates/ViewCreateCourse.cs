@@ -13,7 +13,6 @@ namespace AssignmentPartB.Views.ViewCreates
     {
         public Course CreateCourse()
         {
-
             string title;
             do
             {
@@ -25,7 +24,7 @@ namespace AssignmentPartB.Views.ViewCreates
             CourseType type2;
             do
             {
-                Console.WriteLine("Give Course's Type");
+                Console.WriteLine("Give Course's Type:Press 1 for FullTime or 2 PartTime");
                 type= Console.ReadLine();
             } while (Validation.IsntProperType(type));
             type2 = (CourseType)Enum.Parse(typeof(CourseType),type,true);
@@ -67,6 +66,5 @@ namespace AssignmentPartB.Views.ViewCreates
             return obj;
         }
     }
-
 }
 

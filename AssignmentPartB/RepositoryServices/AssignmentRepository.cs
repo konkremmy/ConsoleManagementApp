@@ -21,24 +21,20 @@ namespace AssignmentPartB.RepositoryServices
         {
             return db.Assignments.ToList();
         }
-
         public Assignment Get(int? id)
         {
             return db.Assignments.Find(id);
         }
-
         public void Add(Assignment assignment)
         {
             db.Entry(assignment).State = EntityState.Added;
             db.SaveChanges();
         }
-
         public void Edit(Assignment assignment)
         {
             db.Entry(assignment).State = EntityState.Modified;
             db.SaveChanges();
         }
-
         public void Delete(int id)
         {
             Assignment assignment = Get(id);

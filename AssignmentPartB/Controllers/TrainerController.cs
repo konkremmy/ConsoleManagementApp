@@ -15,7 +15,6 @@ namespace AssignmentPartB.Controllers
 {
     public class TrainerController
     {
-
         private TrainerRepository trainerRepository;
         private ViewTrainer viewTrainer;
         private ViewCreateTrainer viewCreateTrainer;
@@ -53,27 +52,34 @@ namespace AssignmentPartB.Controllers
         {
             var trainers = trainerRepository.GetAll();
             viewTrainer.ViewTrainersId(trainers);
-            viewDeleteTrainer.DeleteTrainer();
-            int id = Convert.ToInt32(Console.ReadLine());
-            trainerRepository.Delete(id);
-            trainers = trainerRepository.GetAll();
-            viewTrainer.ViewTrainers(trainers);
+            int id = viewDeleteTrainer.GetTrainersIdForDelete();
+            if (trainerRepository.Get(id) != null)
+            {
+                trainerRepository.Delete(id);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }          
         }
-
         public void EditTrainer()
         {
             var trainers = trainerRepository.GetAll();
             viewTrainer.ViewTrainersId(trainers);
-            viewEditTrainer.EditTrainer();
-            int id = Convert.ToInt32(Console.ReadLine());
-            var trainerOld = trainerRepository.Get(id);
-            var trainerNew = viewCreateTrainer.CreateTrainer();
-            trainerOld.FirstName = trainerNew.FirstName;
-            trainerOld.LastName = trainerNew.LastName;
-            trainerOld.Subject = trainerNew.Subject;          
-            trainerRepository.Edit(trainerOld);
-            viewTrainer.ViewTrainers(trainers);
+            int id = viewEditTrainer.GetTrainersIdForEdit();
+            if (trainerRepository.Get(id) != null)
+            {
+                var trainerOld = trainerRepository.Get(id);
+                var trainerNew = viewCreateTrainer.CreateTrainer();
+                trainerOld.FirstName = trainerNew.FirstName;
+                trainerOld.LastName = trainerNew.LastName;
+                trainerOld.Subject = trainerNew.Subject;
+                trainerRepository.Edit(trainerOld);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }          
         }
     }
-
 }

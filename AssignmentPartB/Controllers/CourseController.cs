@@ -15,7 +15,6 @@ namespace AssignmentPartB.Controllers
 {
     public class CourseController
     {
-        
         private CourseRepository courseRepository;
         private ViewCourse viewCourse;
         private ViewAssignmentsPerCourse viewAssignmentsPerCourse;
@@ -24,6 +23,7 @@ namespace AssignmentPartB.Controllers
         private ViewCreateCourse viewCreateCourse;
         private ViewDeleteCourse viewDeleteCourse;
         private ViewEditCourse viewEditCourse;
+
         public CourseController()
         {
             courseRepository = new CourseRepository(new ApplicationDbContext());
@@ -33,10 +33,8 @@ namespace AssignmentPartB.Controllers
             viewStudentPerCourse= new ViewStudentPerCourse();
             viewCreateCourse= new ViewCreateCourse();
             viewDeleteCourse= new ViewDeleteCourse();
-            viewEditCourse= new ViewEditCourse();
-            
+            viewEditCourse= new ViewEditCourse();         
         }
-
         public void PrintCourses()
         {
             var courses =courseRepository.GetAll();
@@ -75,28 +73,36 @@ namespace AssignmentPartB.Controllers
         {
             var courses = courseRepository.GetAll();
             viewCourse.ViewCoursesId(courses);
-            viewDeleteCourse.DeleteCourse();
-            int id = Convert.ToInt32(Console.ReadLine());
-            courseRepository.Delete(id);
-            courses = courseRepository.GetAll();
-            viewCourse.ViewCourses(courses);
+            int id = viewDeleteCourse.GetCoursesIdForDelete();
+            if (courseRepository.Get(id) != null)
+            {
+                courseRepository.Delete(id);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }                            
         }
-
         public void EditCourse()
         {
             var courses = courseRepository.GetAll();
             viewCourse.ViewCoursesId(courses);
-            viewEditCourse.EditCourse();
-            int id = Convert.ToInt32(Console.ReadLine());
-            var courseOld = courseRepository.Get(id);
-            var courseNew = viewCreateCourse.CreateCourse();
-            courseOld.Title = courseNew.Title;
-            courseOld.Stream = courseNew.Stream;
-            courseOld.Type = courseNew.Type;
-            courseOld.StartDate = courseNew.StartDate;
-            courseOld.EndDate = courseNew.EndDate;
-            courseRepository.Edit(courseOld);
-            viewCourse.ViewCourses(courses);
+            int id = viewEditCourse.GetCoursesIdForEdit();
+            if (courseRepository.Get(id) != null)
+            {
+                var courseOld = courseRepository.Get(id);
+                var courseNew = viewCreateCourse.CreateCourse();
+                courseOld.Title = courseNew.Title;
+                courseOld.Stream = courseNew.Stream;
+                courseOld.Type = courseNew.Type;
+                courseOld.StartDate = courseNew.StartDate;
+                courseOld.EndDate = courseNew.EndDate;
+                courseRepository.Edit(courseOld);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }          
         }
     }
 }

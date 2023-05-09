@@ -8,15 +8,13 @@
     using System.Runtime.Remoting.Contexts;
     using AssignmentPartB.Entities;
     using AssignmentPartB.MyDatabase;
-    
-
+   
     internal sealed class Configuration : DbMigrationsConfiguration<AssignmentPartB.MyDatabase.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
-
         protected override void Seed(AssignmentPartB.MyDatabase.ApplicationDbContext db)
         {
 
@@ -621,21 +619,7 @@
             db.Assignments.AddOrUpdate(x => new { x.Title, x.Description },a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28);
             db.SaveChanges();
             #endregion
-
-            //#region PopulateLists
-            //IList<Student> students = new List<Student>() { s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, };
-            //IList<Course> courses = new List<Course>() { c1, c2, c3, c4 };
-            //IList<Trainer> trainers = new List<Trainer> { t1, t2, t3, t4, t5, t6, t7, t8 };
-            //IList<Assignment> assignments = new List<Assignment> { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28 };
-            //#endregion
-
-            //db.Courses.AddRange(courses);
-            //db.Trainers.AddRange(trainers);
-            //db.Students.AddRange(students);
-            //db.Assignments.AddRange(assignments);
-            //db.SaveChanges();
-           
-            //base.Seed(db);
+          
         }
     }
 }

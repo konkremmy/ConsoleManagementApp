@@ -23,8 +23,6 @@ namespace AssignmentPartB.Entities
         public DateTime EndDate { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Trainer> Trainers { get; set; }
-        public virtual ICollection<Assignment> Assignments { get; set; }
-
-        
+        public virtual ICollection<Assignment> Assignments { get; set; } 
     }
 }

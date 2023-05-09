@@ -11,8 +11,7 @@ using AssignmentPartB.RepositoryServices;
 namespace AssignmentPartB.Views
 {
     public class ViewAssignmentsPerCoursePerStudent
-    {
-        
+    { 
         public void ViewAssignmentsPerCoursePerStudents(IEnumerable<Student> students)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -31,6 +30,5 @@ namespace AssignmentPartB.Views
                 }
             }
         }
-
     }
 }

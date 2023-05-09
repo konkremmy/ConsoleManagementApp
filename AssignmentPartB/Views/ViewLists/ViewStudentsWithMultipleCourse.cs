@@ -10,7 +10,6 @@ namespace AssignmentPartB.Views
 {
     public class ViewStudentsWithMultipleCourse
     {
-        
         public void ViewStudentsWithMultipleCourses(IEnumerable<Student> students)
         {
             Console.ForegroundColor = ConsoleColor.Blue;

@@ -39,8 +39,7 @@ namespace AssignmentPartB.Validations
             return string.IsNullOrEmpty(title) || !title.All(Char.IsLetter) || title.Length >= 20;
         }
         public static bool IsntProperType(string type)
-        {
-            Console.WriteLine(type);
+        {        
             return string.IsNullOrEmpty(type) || (type != "1" && type != "2");
         }
         public static bool IsntProperStream(string stream)

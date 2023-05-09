@@ -10,7 +10,7 @@ namespace AssignmentPartB.Views.ViewDeletes
 {
     public class ViewDeleteStudent
     {
-        public int DeleteStudent()
+        public int GetStudentsIdForDelete()
         {
             string input;           
             do

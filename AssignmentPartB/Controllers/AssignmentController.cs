@@ -15,7 +15,6 @@ namespace AssignmentPartB.Controllers
 {
     public class AssignmentController
     {
-
         private AssignmentRepository assignmentRepository;
         private ViewAssignment viewAssignment;
         private ViewCreateAssignment viewCreateAssignment;
@@ -52,28 +51,36 @@ namespace AssignmentPartB.Controllers
         {
             var assignments = assignmentRepository.GetAll();
             viewAssignment.ViewAssignmentsId(assignments);
-            viewDeleteAssignment.DeleteAssignment();
-            int id = Convert.ToInt32(Console.ReadLine());
-            assignmentRepository.Delete(id);
-            assignments = assignmentRepository.GetAll();
-            viewAssignment.ViewAssignments(assignments);
+            int id = viewDeleteAssignment.GetAssignmentsIdForDelete();
+            if (assignmentRepository.Get(id) != null)
+            {
+                assignmentRepository.Delete(id);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }          
         }
-
         public void EditAssignment()
         {
             var assignments = assignmentRepository.GetAll();
             viewAssignment.ViewAssignmentsId(assignments);
-            viewEditAssignment.EditAssignment();
-            int id = Convert.ToInt32(Console.ReadLine());
-            var assignmentOld = assignmentRepository.Get(id);
-            var assignmentNew = viewCreateAssignment.CreateAssignment();
-            assignmentOld.Title = assignmentNew.Title;
-            assignmentOld.Description = assignmentNew.Description;
-            assignmentOld.SubDateTime = assignmentNew.SubDateTime;
-            assignmentOld.OralMark = assignmentNew.OralMark;
-            assignmentOld.TotalMark = assignmentNew.TotalMark;
-            assignmentRepository.Edit(assignmentOld);
-            viewAssignment.ViewAssignments(assignments);
+            int id = viewEditAssignment.GetAssignmentsIdForEdit();
+            if (assignmentRepository.Get(id) != null)
+            {
+                var assignmentOld = assignmentRepository.Get(id);
+                var assignmentNew = viewCreateAssignment.CreateAssignment();
+                assignmentOld.Title = assignmentNew.Title;
+                assignmentOld.Description = assignmentNew.Description;
+                assignmentOld.SubDateTime = assignmentNew.SubDateTime;
+                assignmentOld.OralMark = assignmentNew.OralMark;
+                assignmentOld.TotalMark = assignmentNew.TotalMark;
+                assignmentRepository.Edit(assignmentOld);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Id");
+            }           
         }
     }
 }

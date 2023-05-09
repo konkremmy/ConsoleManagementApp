@@ -28,7 +28,6 @@ namespace AssignmentPartB.Views.ViewCreates
 
             } while (Validation.IsntProperLastName(lastname));
                              
-            
             string subject = Console.ReadLine();
             do
             {

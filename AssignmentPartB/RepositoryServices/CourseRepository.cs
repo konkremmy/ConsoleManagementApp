@@ -11,7 +11,6 @@ namespace AssignmentPartB.RepositoryServices
 {
     public class CourseRepository
     {
-
         public ApplicationDbContext db;
         public CourseRepository(ApplicationDbContext MyContext)
         {
@@ -22,24 +21,20 @@ namespace AssignmentPartB.RepositoryServices
         {
             return db.Courses.ToList();
         }
-
         public Course Get(int? id)
         {
             return db.Courses.Find(id);
         }
-
         public void Add(Course course)
         {
             db.Entry(course).State = EntityState.Added;
             db.SaveChanges();
         }
-
         public void Edit(Course course)
         {
             db.Entry(course).State = EntityState.Modified;
             db.SaveChanges();
         }
-
         public void Delete(int id)
         {
             Course course = Get(id);

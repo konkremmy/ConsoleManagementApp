@@ -8,7 +8,7 @@ using AssignmentPartB.Entities;
 
 namespace AssignmentPartB.Views
 {
-    public class ViewAssignment:Assignment
+    public class ViewAssignment
     {    
         public void ViewAssignments(IEnumerable<Assignment> assignments)
         {

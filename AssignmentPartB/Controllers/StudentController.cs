@@ -35,7 +35,6 @@ namespace AssignmentPartB.Controllers
             viewDeleteStudent = new ViewDeleteStudent();
             viewEditStudent = new ViewEditStudent();
         }
-
         public void PrintAssignmentsPerCoursePerStudent()
         {
             var students = studentRepository.GetAll();
@@ -70,7 +69,7 @@ namespace AssignmentPartB.Controllers
         {
             var students = studentRepository.GetAll();
             viewStudent.ViewStudentsId(students);
-            int id = viewDeleteStudent.DeleteStudent();
+            int id = viewDeleteStudent.GetStudentsIdForDelete();
             if (studentRepository.Get(id) != null)
             {
                 studentRepository.Delete(id);
@@ -80,12 +79,11 @@ namespace AssignmentPartB.Controllers
                 Console.WriteLine("Wrong Id");               
             }           
         }
-
         public void EditStudent()
         {
             var students = studentRepository.GetAll();
             viewStudent.ViewStudentsId(students);
-            int id=viewEditStudent.EditStudent();
+            int id=viewEditStudent.GetStudentsIdForEdit();
             if (studentRepository.Get(id) != null)
             {
                 var studentOld = studentRepository.Get(id);
@@ -101,8 +99,6 @@ namespace AssignmentPartB.Controllers
                 Console.WriteLine("Wrong Id");
             }                    
         }
-
     }
-
 }
 

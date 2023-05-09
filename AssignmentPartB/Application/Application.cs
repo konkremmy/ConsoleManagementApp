@@ -7,74 +7,138 @@ using System.Threading.Tasks;
 using AssignmentPartB.Controllers;
 using AssignmentPartB.MyDatabase;
 using AssignmentPartB.Views;
+using AssignmentPartB.Views.ViewMenus;
 
 namespace AssignmentPartB.Application
 {
     public class Application
     {
-        CourseController courseController = new CourseController();
-        TrainerController trainerController = new TrainerController();
-        StudentController studentController = new StudentController();
-        AssignmentController assignmentController = new AssignmentController();
-        public void Run()
+        CourseController courseController;
+        TrainerController trainerController;
+        StudentController studentController;
+        AssignmentController assignmentController;
+        public Application()
         {
-            Console.WriteLine();      
-            string input;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Welcome To KremmySchool");
-            Console.WriteLine("Press C to Create Your Data//Whatever Else to See Our Data");
-            input = Console.ReadLine();
-           
-            if (input == "c" || input == "C")
-            {
-                do
-                {
-                    Console.WriteLine("Lets Create Your Student");
-                    studentController.CreateStudent();
-                    //studentController.PrintStudents();
-                    Console.WriteLine("Press f to continue to Courses");
-                    input = Console.ReadLine();
-                } while (input != "f");
-                do
-                {
-                    Console.WriteLine("Lets Create Your Course");
-                    courseController.CreateCourse();
-                    //courseController.PrintCourses();
-                    Console.WriteLine("Press f to continue to Trainers");
-                    input = Console.ReadLine();
-                } while (input != "f");
-                do
-                {
-                    Console.WriteLine("Lets Create Your Trainer");
-                    trainerController.CreateTrainer();
-                    //trainerController.PrintTrainers();
-                    Console.WriteLine("Press f to continue to Assignments");
-                    input = Console.ReadLine();
-                } while (input != "f");
-                do
-                {
-                    Console.WriteLine("Lets Create Your Assignment");
-                    assignmentController.CreateAssignment();
-                    //assignmentController.PrintAssignments();
-                    Console.WriteLine("Press f to finish");
-                    input = Console.ReadLine();
-                } while (input != "f");
-            }
-            else
-            {
-                do
-                {
-                    ViewMenu.PrintMenu();
-
-                    input = Console.ReadLine();
-                    Console.Clear();
-
-                    MainController.Controller(studentController,courseController,trainerController,assignmentController,input);
-
-                } while (input != "E" && input != "e");
-            }
+            courseController = new CourseController();
+            trainerController = new TrainerController();
+            studentController = new StudentController();
+            assignmentController = new AssignmentController();
         }
-        
+        public void Run()
+        {          
+            string choice;
+            do
+            {
+                Console.Clear();
+                ViewMainMenu.PrintMainMenu();
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "1": Console.Clear(); PrintSyntheticData(); break;
+                    case "2": Console.Clear(); PrintCreationData(); break;
+                    case "3": Console.Clear(); PrintUpdateData(); break;
+                    case "4": Console.Clear(); PrintDeleteData(); break;
+                    default: ViewExit.PrintExit(); break;
+                }
+            } while (choice != "E");
+        }
+        public void PrintSyntheticData()
+        {
+            string option;
+            do
+            {
+                ViewInsideMenu.PrintInsideMenu();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Choose an option from 1 to 9");
+                Console.ResetColor();
+                option = Console.ReadLine().ToUpper();
+                Console.Clear();
+                switch (option)
+                {
+                    case "1": studentController.PrintStudents(); break;
+                    case "2": courseController.PrintCourses(); break;
+                    case "3": trainerController.PrintTrainers(); break;
+                    case "4": assignmentController.PrintAssignments(); break;
+                    case "5": courseController.PrintStudentsPerCourse(); break;
+                    case "6": courseController.PrintTrainersPerCourse(); break;
+                    case "7": courseController.PrintAssignmentsPerCourse(); break;
+                    case "8": studentController.PrintAssignmentsPerCoursePerStudent(); break;
+                    case "9": Console.ForegroundColor = ConsoleColor.White; Console.Clear(); Console.WriteLine("All Students Have Only 1 Course"); break;
+                    case "E": ViewExit.PrintExit(); break;
+                    default: ViewError.PrintError(); break;
+                }
+                Console.WriteLine("\n\n");
+            } while (option != "E");
+        }
+        public void PrintCreationData()
+        {
+            string option;
+            do
+            {
+                ViewCreateMenu.PrintCreationMenu();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Choose an option from 1 to 4");
+                Console.ResetColor();
+                option = Console.ReadLine().ToUpper();
+                Console.Clear();
+                switch (option)
+                {
+                    case "1": courseController.CreateCourse(); break;
+                    case "2": trainerController.CreateTrainer(); break;
+                    case "3": studentController.CreateStudent(); break;
+                    case "4": assignmentController.CreateAssignment(); break;
+                    case "E": ViewExit.PrintExit(); break;
+                    default: ViewError.PrintError(); break;
+                }
+            } while (option != "E");
+            Console.WriteLine("\n\n");
+        }
+        public void PrintUpdateData()
+        {
+            string option;
+            do
+            {
+                ViewUpdateMenu.PrintUpdateMenu();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Choose an option from 1 to 4");
+                Console.ResetColor();
+                option = Console.ReadLine().ToUpper();
+                Console.Clear();
+                switch (option)
+                {
+                    case "1": courseController.EditCourse(); break;
+                    case "2": trainerController.EditTrainer(); break;
+                    case "3": studentController.EditStudent(); break;
+                    case "4": assignmentController.EditAssignment(); break;
+                    case "E": ViewError.PrintError(); break;
+                    default: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please Enter a Number from 1 to 4"); Console.ResetColor(); break;
+                }
+                Console.WriteLine("\n\n");
+            } while (option != "E");
+        }
+        public void PrintDeleteData()
+        {
+            string option;
+            do
+            {
+                ViewDeleteMenu.PrintDeleteMenu();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Choose an option from 1 to 4");
+                Console.ResetColor();
+                option = Console.ReadLine().ToUpper();
+                Console.Clear();
+                switch (option)
+                {
+                    case "1": courseController.DeleteCourse(); break;
+                    case "2": trainerController.DeleteTrainer(); break;
+                    case "3": studentController.DeleteStudent(); break;
+                    case "4": assignmentController.DeleteAssignment(); break;
+                    case "E": ViewError.PrintError(); break;
+                    default: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please Enter a Number from 1 to 4"); Console.ResetColor(); break;
+                }
+                Console.WriteLine("\n\n");
+            } while (option != "E");
+        }
     }
 }
 

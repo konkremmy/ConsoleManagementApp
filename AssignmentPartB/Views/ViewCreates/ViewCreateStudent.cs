@@ -15,7 +15,6 @@ namespace AssignmentPartB.Views.ViewCreates
         
         public Student CreateStudent()
         {
-
             string firstname;
             do
             {
@@ -58,11 +57,8 @@ namespace AssignmentPartB.Views.ViewCreates
                 obj.TuitionFees = fees;
                 obj.DateOfBirth = dob;
             };
-
-            
-            
+ 
             return obj;
         }
-        
     }
 }

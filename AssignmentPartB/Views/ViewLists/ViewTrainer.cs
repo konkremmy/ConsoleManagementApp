@@ -11,7 +11,6 @@ namespace AssignmentPartB.Views
 {
     public class ViewTrainer
     {
-        
         public void ViewTrainers(IEnumerable<Trainer> trainers)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

@@ -9,7 +9,7 @@ namespace AssignmentPartB.Views.ViewEdits
 {
     public class ViewEditStudent
     {
-        public int EditStudent()
+        public int GetStudentsIdForEdit()
         {
             string input;
             do
